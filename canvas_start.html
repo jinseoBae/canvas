@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Drawing Area</title>
+<!-- You can add your style here rather than in an external style sheet. -->
+<style>
+	canvas {
+	    border:5px solid #d3d3d3;
+	    background-color: #f1f1f1;
+		display: block;
+   }
+
+   
+</style>
+</head>
+<body>
+
+<!-- DO NOT MODIFY THIS HTML -->
+<canvas id = "myCanvas" width = "350" height = "500"></canvas>
+<input type = "color" id = "picker"/>
+<script> 
+
+window.innerHeight;
+window.innerWidth;
+myCanvas.width = window.innerWidth * 0.8;
+myCanvas.height = window.innerHeight * 0.8; 
+var color = "red";
+var c = document.getElementById("myCanvas");
+
+function draw(x,y){
+var ctx = c.getContext("2d");
+console.log("drawing")
+ctx.beginPath();
+ctx.arc(x, y, 50, 0, 2 * Math.PI);
+ctx.fill();
+ctx.fillStyle = color;
+}
+//move the mouse position then do THIS
+myCanvas.addEventListener('mousemove', function(e){
+   console.log(e.offsetX, e.offsetY);
+   console.log(e.pageX, e.pageY);
+   draw(e.pageX, e.pageY);
+})
+myCanvas.removeEventListener('mousemove',function(e){
+	if (e.key == "Enter") {
+		x = ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    console.log(x);
+      }})
+picker.addEventListener('change', function(e){
+color = this.value // picker.value;
+})
+
+window.addEventListener('keypress', function(e){
+      if (e.key == "Space") {
+		x = ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    console.log(x);
+  }
+   })
+
+</script>
+</body>
+</html>
